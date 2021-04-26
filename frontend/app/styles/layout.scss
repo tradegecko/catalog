@@ -1,0 +1,156 @@
+body {
+  font-family: $sans-font-family;
+  color: $gray-7;
+  background: white;
+  font-size: $base-font-size;
+  line-height: 18px;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body > .ember-view {
+    height: 100%;
+}
+
+/* Button Resets */
+button
+{
+  margin:0;
+  border:0;
+  padding:0;
+  display:inline-block;
+  vertical-align:middle;
+  white-space:normal;
+  background:none;
+}
+
+/* Remove the stupid outer glow in Webkit */
+button:focus
+{
+  outline:0;
+}
+
+.fa-spin-2x {
+  -webkit-animation: fa-spin 1s infinite linear;
+  animation: fa-spin 1s infinite linear;
+}
+
+.container-fluid {
+  height: 100%;
+  overflow: auto;
+}
+
+.container-centered {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $size-lg;
+
+  &__item {
+    text-align: center;
+    padding: $size-md;
+  }
+}
+
+.content {
+  padding: $size-lg 0;
+  line-height: 22px;
+  ol {
+    padding: $size-lg;
+    li {
+      list-style-type: decimal;
+      padding-left: $size-sm;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $c-moko;
+
+  &:hover {
+    text-decoration: none;
+    color: $c-moko-dark;
+  }
+  &:focus {
+    outline:0;
+    box-shadow: none;
+    border: 0;
+  }
+}
+
+strong {
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 300;
+  color: #4B4D4F;
+  text-rendering: optimizelegibility;
+  font-family: $title-font-family;
+}
+
+h4,
+h5,
+h6 {
+  line-height: 18px;
+}
+
+h1 {
+  font-size: $large-font-size;
+  line-height: normal;
+}
+
+h2 {
+  font-size: 20px;
+  line-height: normal;
+}
+
+h3 {
+  line-height: normal;
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+h5 {
+  font-size: 12px;
+}
+
+h6 {
+  font-size: $base-font-size;
+  color: $gray-5;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: $base-font-size;
+}
+
+/* Flexbox defaults */
+.flex-row {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-space {
+  flex-grow: 1;
+}

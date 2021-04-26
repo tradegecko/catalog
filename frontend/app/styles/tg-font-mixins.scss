@@ -1,0 +1,155 @@
+//$available-font-styling: (
+//  extend//take all of the styles from these defined styles in priority order\
+//
+//  font//This chooses the font-family from the chosen list
+//  weight//font-weight from the list that the font has
+//
+//  leading//line-height
+//  margin//margin-top
+//  margin-bottom//margin-bottom
+//  size//font-size
+//  tracking//letter-spacing
+//  style//font-style
+//  case//text-transform
+//  color//color
+//);
+
+@function rem-size ($size) {
+  $fs-base: map-get($base-font-styling, size);
+
+  @return (1rem) / $fs-base * $size;
+}
+
+@function font-part ($font-name, $part) {
+  $font: map-get($text-styles, $font-name);
+
+  @if map-has-key($font, $part) {
+    @if $part == size and map-has-key($font-sizes, font-part($font-name, font)) {
+      @return map-get($font, size) * map-get($font-sizes, font-part($font-name, font));
+    } @else {
+      @return map-get($font, $part);
+    }
+
+  } @else if map-has-key($font, extend) {
+    @each $extend in map-get($font, extend) {
+      @if font-part($extend, $part) != null {
+        @return font-part($extend, $part);
+      }
+    }
+  }
+
+  @return null;
+}
+
+@function font-weight ($font-name) {
+  @if $font-name == null {
+    @return null;
+  }
+
+  $family-set: font-part($font-name, font);
+  @if $family-set == null {
+    @return null;
+  }
+
+  $weight: font-part($font-name, weight);
+  @if $weight == null {
+    @return null;
+  }
+
+  //  If the family set has its own weights, try to use them
+  $weights: map-get($font-weights, $family-set);
+  @if $weights != null {
+    @if map-has-key($weights, $weight) {
+      @return map-get($weights, $weight);
+    }
+  }
+
+  //  If it hasn't, or the list doesn't contain the requested weight
+  //    try the _default set
+  $weights: map-get($font-weights, _default);
+  @if $weights != null {
+    @if map-has-key($weights, $weight) {
+      @return map-get($weights, $weight);
+    }
+  }
+
+  @return null;
+}
+
+//Print styles for rems, falling back to the less scalable pixels
+@mixin px-rem-size ($size, $rule: font-size) {
+  #{$rule}: (1px) * $size;
+  #{$rule}: rem-size($size);
+}
+
+@mixin font ($font-name) {
+  $leading: font-part($font-name, leading);
+  @if $leading != null {
+    @include px-rem-size($leading, line-height);
+  }
+
+  $margin-top: font-part($font-name, margin);
+  @if $margin-top != null {
+    @include px-rem-size($margin-top, margin-top);
+  }
+
+  $margin-bottom: font-part($font-name, margin-bottom);
+  @if $margin-bottom != null {
+    @include px-rem-size($margin-bottom, margin-bottom);
+  }
+
+  $size: font-part($font-name, size);
+  @if $size != null {
+    @include px-rem-size($size);
+  }
+
+  $family-set: font-part($font-name, font);
+  @if $family-set != null {
+    font-family: map-get($font-families, $family-set);
+  }
+
+  $weight: font-weight($font-name);
+  @if $family-set != null {
+    font-weight: font-weight($font-name);
+  }
+
+  $tracking: font-part($font-name, tracking);
+  @if $tracking != null {
+    @include px-rem-size($tracking, letter-spacing);
+  }
+
+  $style: font-part($font-name, style);
+  @if $style != null {
+    @if $style == italic or $style == normal {
+      font-style: $style;
+    }
+  }
+
+  $case: font-part($font-name, case);
+  @if $case != null {
+    @if $case == uppercase or $case == lowercase or $case == capitalize or $case == none {
+      text-transform: $case;
+    }
+  }
+
+  $color: font-part($font-name, color);
+  @if $color != null {
+    color: $color;
+  }
+}
+
+@mixin print-fonts-as-classes ($_prefix: null) {
+  $prefix: null;
+
+  @if $_prefix != null {
+    $prefix: $_prefix + "-";
+  }
+
+  @each $name, $value in $text-styles {
+    @if str-slice($name, 0, 1) != "_" {
+      .#{$prefix}#{$name} {
+        @include font($name);
+      }
+    }
+  }
+}

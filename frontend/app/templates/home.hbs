@@ -1,0 +1,5 @@
+<h1>{{t "home.title"}}</h1>
+<br>
+{{#each this.model as |variant|}}
+  <div class="variant-row">{{variant.sku}}: {{variant.name}}</div>
+{{/each}}

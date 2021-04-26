@@ -1,0 +1,23 @@
+#!/bin/bash
+
+current_ruby=`ruby -v`
+current_bundler=`cat Gemfile.lock | grep -A 1 "BUNDLED WITH" | grep "[0-9.]"`
+[[ $(sed -n '2p' Gemfile) =~ ([[:digit:]].[[:digit:]].[[:digit:]](-p[[:digit:]]+)?) ]]
+
+echo "Ruby on CI: ${current_ruby}"
+echo "Ruby on Gemfile: ${BASH_REMATCH[1]}"
+
+if [[ $current_ruby = *${BASH_REMATCH[1]}* ]]; then
+  echo "Ruby is set"
+elif rbenv versions | grep ${BASH_REMATCH[1]}; then
+  echo "Setting rbenv to version ${BASH_REMATCH[1]}"
+  rbenv local ${BASH_REMATCH[1]}
+  gem install bundler -v ${current_bundler} --no-document
+  gem install semaphore_test_boosters --no-document
+else
+  echo "Installing and setting rbenv to version ${BASH_REMATCH[1]}"
+  cd ~/.rbenv/plugins/ruby-build && git pull && cd $SEMAPHORE_PROJECT_DIR
+  rbenv install ${BASH_REMATCH[1]}; rbenv local ${BASH_REMATCH[1]}
+  gem install bundler -v ${current_bundler} --no-document
+  gem install semaphore_test_boosters --no-document
+fi

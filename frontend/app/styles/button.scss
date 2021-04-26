@@ -1,0 +1,194 @@
+$cta-button-height: 40px;
+$cta-button-padding: $size-md;
+
+$c-button-primary-text:       $white;
+$c-button-primary-border:     $c-moko;
+$c-button-primary-bg:         $c-moko;
+$c-button-primary-bg-hover:   $c-moko-dark;
+
+$c-button-default-text:       $gray-10;
+$c-button-default-border:     $gray-3;
+$c-button-default-bg:         rgba($white, 0.85);
+$c-button-default-bg-hover:   rgba($white, 0.85);
+
+$c-button-dark-primary-text:       $white;
+$c-button-dark-primary-border:     $c-moko;
+$c-button-dark-primary-bg:         $c-moko;
+$c-button-dark-primary-bg-hover:   $c-moko-dark;
+
+$c-button-dark-default-text:       $white;
+$c-button-dark-default-border:     $gray-4;
+$c-button-dark-default-bg:         $gray-7;
+$c-button-dark-default-bg-hover:   rgba($gray-10, 0.1);
+
+.button-set__menu-button {
+  font-family: $sans-font-family;
+  font-size: 12px;
+  font-weight: 400;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: $border-radius;
+  padding: $size-xs $size-md;
+  outline: none;
+  display: inline-block;
+  transition-property: color, background-color, box-shadow, border-color;
+  transition-duration: 0.2s;
+  box-shadow: 0 1px 0.51px rgba($black, 0.05);
+
+  &--primary {
+    border-color: $c-button-primary-border;
+    color: $c-button-primary-text;
+    background-color: $c-button-primary-bg;
+
+    &:hover {
+      background-color: $c-button-primary-bg-hover;
+    }
+  }
+
+  &--default {
+    border-color: $c-button-default-border;
+    color: $c-button-default-text;
+    background-color: $c-button-default-bg;
+
+    &:hover {
+      background-color: $c-button-default-bg-hover;
+    }
+  }
+
+}
+
+//dark theme
+
+.theme--dark {
+  .button-set__menu-button {
+    &--primary {
+      border-color: $c-button-dark-primary-border;
+      color: $c-button-dark-primary-text;
+      background-color: $c-button-dark-primary-bg;
+
+      &:hover {
+        background-color: $c-button-dark-primary-bg-hover;
+      }
+    }
+
+    &--default {
+      border-color: $c-button-dark-default-border;
+      color: $c-button-dark-default-text;
+      background-color: $c-button-dark-default-bg;
+
+      &:hover {
+        background-color: $c-button-dark-default-bg-hover;
+      }
+    }
+
+    &--disabled {
+      opacity: 0.25;
+      pointer-events: none;
+    }
+  }
+}
+
+
+// cta buttons
+
+.cta-button {
+  font-family: $title-font-family;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08rem;
+  border-radius: $border-radius;
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  flex: 0 0 auto;
+  position: relative;
+  padding: $size-sm $size-md;
+  border: 1px solid $c-moko;
+  line-height: $cta-button-height;
+  outline: 0;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: visible;
+
+  &:hover {
+    border-color: $c-moko-dark;
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+    outline: 0;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &.cta-button--disabled {
+    border-color: $gray-2;
+    cursor: not-allowed;
+  }
+
+  .cta-button__label {
+    transition: opacity 0.2s;
+    opacity: 1;
+  }
+  &.cta-button--loading .cta-button__label {
+    opacity: 0;
+  }
+}
+
+.cta-button {
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &--primary {
+    background-color: $c-moko;
+    color: $white;
+    text-decoration: none;
+
+    &:visited, &:active, &:focus {
+      background-color: $c-moko;
+      color: $white;
+    }
+
+    &:hover {
+      color: $white;
+      background-color: $c-moko-dark;
+    }
+
+    &.cta-button--disabled {
+      color: $white;
+      background-color: $gray-2;
+    }
+
+  }
+
+  &--naked,
+  &--secondary {
+    background-color: $white;
+    color: $c-moko;
+
+    &:hover {
+      color: $c-moko-dark;
+    }
+
+    &.cta-button--disabled {
+      color: $gray-2;
+      background-color: $white;
+    }
+
+  }
+
+  &--naked,
+  &--naked:hover {
+    border-color: transparent;
+    background-color: transparent;
+  }
+}

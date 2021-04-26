@@ -1,0 +1,7 @@
+// Remove Blue Focus from Forms
+:focus {
+  outline-color: transparent;
+  outline-style: none;
+  border: 1px solid rgba($c-sky, 0.8);
+  box-shadow: 0 0 7px rgba($c-sky, 0.4);
+}

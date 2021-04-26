@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>QuickBooks Commerce - Catalog</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+
+    {{content-for "head"}}
+
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/frontend.css">
+    <link integrity="" rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=Raleway:200,300,600,700">
+    <link integrity="" rel="stylesheet" media="all" href="//fonts.googleapis.com/css?family=Open+Sans:400,600,700">
+    <!-- <link rel="apple-touch-icon-precomposed" type="image/png" href="{{rootURL}}assets/images/favicons/apple-touch-icon-iphone.png" sizes="57x57" />
+    <link rel="apple-touch-icon-precomposed" type="image/png" href="{{rootURL}}assets/images/favicons/apple-touch-icon-iphone.png" sizes="114x114" />
+    <link rel="apple-touch-icon-precomposed" type="image/png" href="{{rootURL}}assets/images/favicons/apple-touch-icon-ipad.png" sizes="72x72" />
+    <link rel="apple-touch-icon-precomposed" type="image/png" href="{{rootURL}}assets/images/favicons/apple-touch-icon-ipad.png" sizes="144x144" />
+ -->
+
+    {{content-for "head-footer"}}
+  </head>
+  <body>
+    {{content-for "body"}}
+
+    <script src="{{rootURL}}assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/frontend.js"></script>
+    <script src="https://cdn.rawgit.com/kabachello/jQuery-Scanner-Detection/master/jquery.scannerdetection.js"></script>
+    {{content-for "body-footer"}}
+  </body>
+</html>

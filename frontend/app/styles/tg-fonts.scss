@@ -1,0 +1,90 @@
+$base-font-styling: (//don't delete
+  size: 10
+);
+
+$font-families: (//don't delete
+  copy:    ("Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif),
+  heading: ("Raleway", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif)
+);
+
+$font-sizes: ();//don't delete
+
+$font-weights: (//don't delete
+  _default: (
+    light:   200,
+    regular: 400,
+    semibold: 600,
+    bold:    700
+  )
+);
+
+$text-styles: (//don't delete
+  body: (
+    font:   copy,
+    size:   14,
+    color:  $gray-9,
+    weight: regular
+  ),
+  body--bold: (
+    extend: body,
+
+    weight: bold
+  ),
+  table-body: (
+    extend: body,
+
+    color:  $black
+  ),
+  context: (
+    extend: body,
+
+    style: italic,
+    color: $gray-6
+  ),
+  caption: (
+    extend: body,
+
+    size:   12,
+  ),
+
+  pagetitle: (
+    font:   heading,
+    weight: light,
+    size:   28
+  ),
+
+  sectiontitle: (
+    font:   copy,
+    weight: regular,
+    size:   20
+  ),
+  emphasize: (
+    extend: sectiontitle,
+
+    weight: light,
+    style: italic
+  ),
+
+  label: (
+    font:   heading,
+    size:   11,
+    case:   uppercase,
+    color:  $gray-9,
+    weight: bold
+  ),
+  label-subtext: (
+    extend: label,
+
+    weight: regular,
+    color: $gray-5
+  ),
+  label-context: (
+    extend: body,
+
+    style: italic,
+    color: $gray-4,
+    case: lowercase
+  ),
+);
+
+@include print-fonts-as-classes(f);

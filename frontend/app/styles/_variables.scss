@@ -1,0 +1,123 @@
+$golden-ratio: 1.61803398875;
+
+@mixin rem-px ($rule: font-size, $sizes: 1) {
+  $sizes-px: ();
+  $sizes-rem: ();
+
+  @each $_size in $sizes {
+    @if type-of($_size) == number {
+      $size:      $_size / ($_size * 0 + 1);
+      $sizes-px:  append($sizes-px,  1px * $size);
+      $sizes-rem: append($sizes-rem, convert-to-rem($size));
+    } @else {
+      $sizes-px:  append($sizes-px,  $_size);
+      $sizes-rem: append($sizes-rem, $_size);
+    }
+  }
+
+  #{$rule}: $sizes-px;
+  #{$rule}: $sizes-rem;
+}
+
+@mixin clearfix {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+// Reporting
+$sans-font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+$title-font-family: 'Raleway', $sans-font-family;
+
+$base-font-size: 13px;
+$small-font-size: 11px;
+$smallmid-font-size: 14px;
+$medium-font-size: 16px;
+$large-font-size: 24px;
+$huge-font-size: 32px;
+
+$icon-size-small: 0.8rem;
+$icon-size-medium: 1.2rem;
+$icon-size-large: 2rem;
+
+$variant-image-size: 36px;
+
+$base-line-height: 18px;
+
+$icon-sprite-path: 'glyphicons-halflings.png' !default;
+$icon-white-sprite-path: 'glyphicons-halflings-white.png' !default;
+
+$nprogress-color: $c-moko;
+$tall-header: 100px;
+$inset-stat-font-size: 12px;
+
+// https://github.com/adambom/Sass-Math/blob/master/math.scss
+@function pow($number, $exp) {
+  $ret: 1;
+
+  @if $exp >= 0 {
+    @for $i from 1 through $exp {
+      $ret: $ret * $number;
+    }
+  } @else {
+    @for $i from $exp to 0 {
+      $ret: $ret / $number;
+    }
+  }
+  @return $ret;
+}
+
+$border-width: 1px;
+
+.max-100 {
+  max-width: 100%;
+}
+
+$border-radius: 3px;
+$border-radius-circle: 50%;
+$internal-border-radius: $border-radius - $border-width;
+$border-base: 1px solid $gray-3;
+$border-base-dotted: 1px $gray-2 dotted;
+$border-light: 1px solid $gray-2;
+
+$size-xs: 5px;
+$size-sm: 10px;
+$size-md: 15px;
+$size-lg: 20px;
+$size-xl: 30px;
+$size-xxl: 40px;
+
+$font-weight-thin: 200;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$font-weight-heavy: 700;
+
+$menu-bar-height: 50px;
+$header-bar-height: 40px;
+$sidebar-width: 210px;
+$input-height: 32px;
+$input-padding: 4px;
+
+$sidebar-row-height: $menu-bar-height;
+$sidebar-subtab-font-size: 12px;
+
+//TABLES
+$table-row-border: 1px solid $gray-2;
+$table-row-dotted-border: 1px dotted $gray-2;
+$table-row-height: 50px;
+$table-row-button-height-sm: 22px;
+$table-row-button-height: 27px;
+$table-row-label-height: 17px;
+
+$z-1: 1;
+$z-2: 10;
+$z-3: 100;
+$z-4: 1000;
+$z-5: 10000;
