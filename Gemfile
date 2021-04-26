@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.2'
+ruby '2.6.6'
 
 # TODO: Remove with Bundler 2
 git_source(:github) do |repo_name|
