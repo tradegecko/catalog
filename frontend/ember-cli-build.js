@@ -6,6 +6,11 @@ module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     'ember-math-helpers': {
       only: ['add', 'sub'],
+    },
+
+    'ember-bootstrap': {
+      bootstrapVersion: 4,
+      importBootstrapCSS: false
     }
   });
 

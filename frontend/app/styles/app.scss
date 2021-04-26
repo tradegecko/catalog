@@ -10,3 +10,5 @@ $enable-flex: true;
 @import 'form-overrides';
 @import 'layout';
 @import 'button';
+
+@import "ember-bootstrap/bootstrap";
