@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/api/*path', to: 'proxy#create'
   put   '/api/*path', to: 'proxy#update'
   delete '/api/*path', to: 'proxy#delete'
+  get   '/liquid', to: 'liquid#index'
 
   constraints lambda { |request| request.session.key?(:user_id) } do
     mount_ember_app :frontend, to: "/"

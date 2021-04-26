@@ -23,6 +23,8 @@ gem 'omniauth-tradegecko'
 gem 'access_token_wrapper'
 gem 'gecko-ruby'
 
+gem 'liquid'
+
 group :development, :test do
   gem 'pry-byebug'
 end

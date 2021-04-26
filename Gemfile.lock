@@ -117,6 +117,7 @@ GEM
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     jwt (2.2.3)
+    liquid (4.0.3)
     listen (3.5.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -261,6 +262,7 @@ DEPENDENCIES
   ember-cli-rails
   gecko-ruby
   honeybadger
+  liquid
   listen
   omniauth-tradegecko
   pg
