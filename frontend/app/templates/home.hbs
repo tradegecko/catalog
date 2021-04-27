@@ -1,18 +1,51 @@
-<h1>{{t "home.title"}}</h1>
-<br>
-{{#each this.model as |variant|}}
 <div class="container">
   <div class="row">
-    <div class="card" style="width: 18rem;">
-      {{!-- <img src="..." class="card-img-top" alt="..."> --}}
-      <div class="card-body">
-        <h5 class="card-title">{{variant.sku}}: {{variant.name}}</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+    <div class="input-group mb-3">
+      <Input
+      @type="text"
+      @value={{this.searchTerm}}
+      @class="form-control"
+      @placeholder="Search for variant"
+      style="height: 38px"
+      />
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
       </div>
     </div>
   </div>
+  <div class="row">
+    {{#each this.model as |variant|}}
+      <div class="card col-lg-3 col-md-4 col-sm-6">
+        {{#if variant.primaryImage.imageURL}}
+          <BsCarousel
+          @autoPlay={{false}}
+          @wrap={{true}}
+          @index={{0}}
+          @keyboard={{true}}
+          @ltr={{true}}
+          @showControls={{true}}
+          @showIndicators={{true}}
+          as |car|>
+            {{#each variant.images as |image|}}
+              <car.slide>
+                <img src={{image.imageURL}} class="card-img-top"style="height: 200px;object-fit: contain;">
+              </car.slide>
+            {{/each}}
+          </BsCarousel>
+        {{else}}
+          <img
+            src="https://d3h6ue1fvxa32i.cloudfront.net/assets/avatars/avatar-product-placeholder-2323356025b30cfdcc3c79adeae8b74b681a2532688457687d4000a61e63f898.png"
+            class="card-img-top"
+            style="height: 200px;object-fit: contain;"
+          >
+        {{/if}}
+        <div class="card-body">
+          <strong class="">{{variant.productName}} - {{variant.name}}</strong>
+          <p class="mb-2 text-muted">{{variant.sku}}</p>
+          <p>Price: {{getVariantPrice variant this.channel.priceListId}}</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 </div>
-
-{{/each}}
 

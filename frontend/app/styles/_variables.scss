@@ -33,7 +33,7 @@ $golden-ratio: 1.61803398875;
 
 // Reporting
 $sans-font-family: 'Open Sans', Helvetica, Arial, sans-serif;
-$title-font-family: 'Raleway', $sans-font-family;
+$title-font-family: $sans-font-family;
 
 $base-font-size: 13px;
 $small-font-size: 11px;
