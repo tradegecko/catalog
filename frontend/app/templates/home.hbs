@@ -1,4 +1,23 @@
 <div class="container">
+
+  <div class="row">
+    <div class="col">
+      <Select @onChange={{action (mut this.channel_id)}} @value={{this.channel_id}} as |s|>
+        <s.option @label="Active Variants" @value="" />
+        {{#each this.channels as |channel|}}
+        <s.option @label={{channel.name}} @value={{channel.id}} />
+        {{/each}}
+      </Select>
+    </div>
+    <div class="col">
+      <Select @onChange={{action (mut this.filter_id)}} @value={{this.filter_id}} as |s|>
+        <s.option @label="All" @value="" />
+        {{#each this.filters as |filter|}}
+        <s.option @label={{filter.name}} @value={{filter.id}} />
+        {{/each}}
+      </Select>
+    </div>
+  </div>
   <div class="row">
     <div class="input-group mb-3">
       <Input
