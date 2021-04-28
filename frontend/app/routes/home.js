@@ -5,7 +5,10 @@ export default class HomeRoute extends Route {
   queryParams = {
     channel_id: {
       refreshModel: true
-    }
+    },
+    filter_id: {
+      refreshModel: true
+    },
   };
 
   async model(params) {
