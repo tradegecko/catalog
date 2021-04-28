@@ -9,17 +9,11 @@ export default class HomeRoute extends Route {
   };
 
   async model(params) {
-    let channelReferences = await this.store.query('channel-reference', {
-      channel_id: params.channel_id,
-      owner_type: 'Variant',
-      limit: 250,
+    // rails-ember-cli bug http://localhost:3001/?channel_id=5/
+    return this.store.query('variant', {
+      channel_id: (params.channel_id || '').replace('/',''),
+      filter_id: (params.filter_id || '').replace('/','')
     });
-    let variantIds = channelReferences.mapBy('ownerId');
-    if (isEmpty(variantIds)) {
-      return [];
-    } else {
-      return this.store.query('variant', { ids: variantIds, limit: 250 });
-    }
   }
 
   setupController(controller, model) {
