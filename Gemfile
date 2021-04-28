@@ -16,7 +16,7 @@ gem 'puma'
 gem 'sassc-rails'
 gem 'uglifier'
 
-gem 'ember-cli-rails'
+gem 'ember-cli-rails', github: 'tradegecko/ember-cli-rails', branch: 'bugfix/force-no-trailing-slash'
 
 gem 'honeybadger'
 gem 'omniauth-tradegecko'

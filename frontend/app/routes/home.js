@@ -12,10 +12,9 @@ export default class HomeRoute extends Route {
   };
 
   async model(params) {
-    // rails-ember-cli bug http://localhost:3001/?channel_id=5/
     return this.store.query('variant', {
-      channel_id: (params.channel_id || '').replace('/',''),
-      filter_id: (params.filter_id || '').replace('/','')
+      channel_id: params.channel_id,
+      filter_id: params.filter_id
     });
   }
 
