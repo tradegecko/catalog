@@ -19,7 +19,6 @@ chdir APP_ROOT do
 
   chdir 'frontend' do
     system! 'yarn install'
-    system! 'bower install'
   end
 
   puts "\n== Updating database =="
