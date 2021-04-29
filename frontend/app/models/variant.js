@@ -11,7 +11,7 @@ export default class VariantModel extends Model {
   @attr('string') sku;
   @attr('string') name;
   @attr('string') productName;
-  @attr('string') retailPrice;
+  @attr('string') sellPrice;
   @attr('string') wholesalePrice;
   @attr() variantPrices;
 
