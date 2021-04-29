@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :templates
+
   def self.find_or_create_from_omniauth(auth)
     self.where(tg_login_id: auth.info.login_id).first_or_create
   end
