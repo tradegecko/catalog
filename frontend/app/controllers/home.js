@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
 
 export default class HomeController extends Controller {
   @tracked channels;
@@ -22,5 +23,10 @@ export default class HomeController extends Controller {
         ids: [this.channel_id],
       });
     }
+  }
+
+  @action
+  createTemplate(){
+
   }
 }
