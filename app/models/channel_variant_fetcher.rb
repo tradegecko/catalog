@@ -24,8 +24,8 @@ class ChannelVariantFetcher < VariantFetcher
 
   def channel
     @channel ||= begin
-      response = gecko.access_token.request(:get, "/channels?#{@channel_id}").parsed
-      response["channels"][0]
+      response = gecko.access_token.request(:get, "/channels/#{@channel_id}").parsed
+      response[response.keys.first]
     end
   end
 
@@ -39,7 +39,7 @@ class ChannelVariantFetcher < VariantFetcher
   end
 
   def variant_ids
-    response = oauth_session.gecko.access_token.request(:get, '/channel_references?channel_id=5&owner_type=Variant').parsed
+    response = oauth_session.gecko.access_token.request(:get, "/channel_references?channel_id=#{channel["id"]}&owner_type=Variant").parsed
     response["channel_references"].map { |v| v["owner_id"] }
   end
 

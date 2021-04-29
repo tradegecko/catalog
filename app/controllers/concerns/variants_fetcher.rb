@@ -17,7 +17,15 @@ module VariantsFetcher
     if (channel_id || '').empty?
       VariantFetcher.new(current_user)
     else
-      ChannelVariantFetcher.new(current_user,channel_id)
+      # in the longer term we would cache the channel catalogues so we dont have to do this fetch
+      gecko = OAuthSession.new(current_user).gecko
+      response = gecko.access_token.request(:get, "/channels/#{channel_id}").parsed
+      channel = response[response.keys.first]
+      if channel["type"] != 'iguana'
+       ChannelVariantFetcher.new(current_user,channel_id)
+      else
+        B2bVariantFetcher.new(current_user,channel_id)
+      end
     end
   end
 end
