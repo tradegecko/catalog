@@ -13,7 +13,11 @@ class VariantFetcher
   end
 
   def variants
+    raw_variants
+    image_map = @images.each_with_object({}) { |image, obj| obj[image["id"]] = image }
     raw_variants.each do |variant|
+      primary_image = image_map[variant["image_ids"][0]]
+      variant["primary_image_url"] =  "#{primary_image["base_path"]}/#{primary_image["file_name"]}" if primary_image
       variant["strike_price"] = variant["prices"][strike_price_id]
       variant["sell_price"] = variant["prices"][sell_price_id]
     end
@@ -21,7 +25,8 @@ class VariantFetcher
 
   def raw_variants
     @variants ||= begin
-      gecko.Variant.where(limit: 250)
+      gecko.Variant.where(limit: 250, include: :images)
+      @images = gecko.Variant.last_response.parsed["images"]
       gecko.Variant.last_response.parsed["variants"]
     end
   end
