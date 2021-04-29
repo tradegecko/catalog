@@ -13,8 +13,8 @@ class ChannelVariantFetcher < VariantFetcher
     channel["compare_at_price_list_id"]
   end
 
-  def variants
-    variants ||= begin
+  def raw_variants
+    @raw_variants ||= begin
       params = {ids: variant_ids,include: :images} 
       response = oauth_session.gecko.access_token.request(:get, 'variants', params: params).parsed
       @images = response["images"]

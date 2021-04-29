@@ -13,6 +13,13 @@ class VariantFetcher
   end
 
   def variants
+    raw_variants.each do |variant|
+      variant["strike_price"] = variant["prices"][strike_price_id]
+      variant["sell_price"] = variant["prices"][sell_price_id]
+    end
+  end
+
+  def raw_variants
     @variants ||= begin
       gecko.Variant.where(limit: 250)
       gecko.Variant.last_response.parsed["variants"]
@@ -37,11 +44,11 @@ class VariantFetcher
   end
 
   def sell_price_id
-    raise NotImplementedError
+    'retail'
   end
 
   def strike_price_id
-    raise NotImplementedError
+    'retail'
   end
 
 end
