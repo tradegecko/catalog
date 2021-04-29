@@ -22,7 +22,7 @@
     <div class="col">
       <div class="input-group mb-3">
         <Select @onChange={{action (mut this.template_id)}} @value={{this.template_id}} style="height: 38px" as |s|>
-          {{#each this.channels as |template|}}
+          {{#each this.templates as |template|}}
             <s.option @label={{template.name}} @value={{template.id}} />
           {{/each}}
         </Select>

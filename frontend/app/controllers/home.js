@@ -15,6 +15,7 @@ export default class HomeController extends Controller {
     super(...arguments);
     this.channels =this.store.findAll('channel');
     this.filters =this.store.query('filterTab', {page: 'variants'});
+    this.templates =this.store.findAll('template');
   }
 
   async fetchChannel() {
