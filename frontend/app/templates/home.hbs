@@ -1,30 +1,47 @@
 <div class="container">
 
-  <div class="row">
+  <div class="row mb-3">
+    <label for="catalogueSelect" class="form-label col-form-label">Catalogue</label>
     <div class="col">
-      <Select @onChange={{action (mut this.channel_id)}} @value={{this.channel_id}} as |s|>
+      <Select @onChange={{action (mut this.channel_id)}} @value={{this.channel_id}} style="height: 38px" id="catalogueSelect" as |s|>
         <s.option @label="Active Variants" @value="" />
         {{#each this.channels as |channel|}}
-        <s.option @label={{channel.name}} @value={{channel.id}} />
+          <s.option @label={{channel.name}} @value={{channel.id}} />
+        {{/each}}
+      </Select>
+    </div>
+    <label for="catalogueSelect" class="form-label col-form-label">Filter</label>
+    <div class="col">
+      <Select @onChange={{action (mut this.filter_id)}} @value={{this.filter_id}} style="height: 38px" as |s|>
+        <s.option @label="All" @value="" />
+        {{#each this.filters as |filter|}}
+          <s.option @label={{filter.name}} @value={{filter.id}} />
         {{/each}}
       </Select>
     </div>
     <div class="col">
-      <Select @onChange={{action (mut this.filter_id)}} @value={{this.filter_id}} as |s|>
-        <s.option @label="All" @value="" />
-        {{#each this.filters as |filter|}}
-        <s.option @label={{filter.name}} @value={{filter.id}} />
-        {{/each}}
-      </Select>
+      <div class="input-group mb-3">
+        <Select @onChange={{action (mut this.template_id)}} @value={{this.template_id}} style="height: 38px" as |s|>
+          {{#each this.templates as |template|}}
+            <s.option @label={{template.name}} @value={{template.id}} />
+          {{/each}}
+        </Select>
+        <div class="input-group-append">
+          <a class="btn btn-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={{concat '/liquid?' 'channel_id=' this.channel_id '&filter_id=' this.filter_id '&template_id=' this.template_id}}
+          >
+            Export
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div class="col">
+      <BsButton @onClick={{action "createTemplate"}}>Create Template</BsButton>
     </div>
   </div>
-  <a class="btn btn-secondary"
-    target="_blank"
-    rel="noopener noreferrer"
-    href={{concat '/liquid?' 'channel_id=' this.channel_id '&filter_id=' this.filter_id}}
-  >
-    export
-  </a>
   <div class="row">
     <div class="input-group mb-3">
       <Input
