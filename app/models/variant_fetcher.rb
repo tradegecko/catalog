@@ -31,12 +31,12 @@ class VariantFetcher
     end
   end
 
-  def variants_in_filter(filter_id)
+  def variants_in_filter(filter_id, query)
     filter = gecko.access_token.request(:get, "filter_tabs/#{filter_id}").parsed
-    params = filter["filter_tab"]["filters_data"].each_with_object({}) do |property, obj|
+    params = filter_id.present? ? (filter["filter_tab"]["filters_data"].each_with_object({}) do |property, obj|
       obj[property["property"].underscore.to_sym] = property["values"]
-    end
-    gecko.Variant.where(params.merge(limit: 250))
+    end) : {}
+    gecko.Variant.where(params.merge(limit: 250, q: query))
     gecko.Variant.last_response.parsed["variants"]
   end
 

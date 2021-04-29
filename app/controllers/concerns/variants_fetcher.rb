@@ -4,11 +4,12 @@ module VariantsFetcher
   extend ActiveSupport::Concern
 
   def variants
-    filter_id = params["filter_id"];
-    if (filter_id || '').empty?
-      adapter.variants
+    filter_id = params["filter_id"] || '';
+    query = params["q"] || '';
+    if query.present? || filter_id.present?
+      adapter.variants_in_filter(filter_id, query)
     else
-      adapter.variants_in_filter(filter_id)
+      adapter.variants
     end
   end
 

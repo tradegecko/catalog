@@ -8,9 +8,12 @@ export default class HomeController extends Controller {
   @tracked filters;
   @tracked templates;
   @tracked template_id;
+  @tracked q;
+  @tracked searchTerm;
+
   @service store;
 
-  queryParams = ['channel_id', 'filter_id']
+  queryParams = ['channel_id', 'filter_id', 'q']
 
   constructor(){
     super(...arguments);
@@ -26,5 +29,10 @@ export default class HomeController extends Controller {
   @action
   createTemplate(){
 
+  }
+
+  @action
+  search(){
+    this.q = this.searchTerm;
   }
 }

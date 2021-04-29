@@ -29,8 +29,8 @@ class ChannelVariantFetcher < VariantFetcher
     end
   end
 
-  def variants_in_filter(filter_id)
-    variants_in_filter=super(filter_id)
+  def variants_in_filter(filter_id, query)
+    variants_in_filter=super(filter_id, query)
     published_variants=variants
     variants_in_filter_ids = variants_in_filter.map { |variant| variant["id"] }
     published_variants_ids = published_variants.map { |variant| variant["id"] }
