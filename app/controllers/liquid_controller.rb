@@ -26,10 +26,34 @@ class LiquidController < ApplicationController
           }
           await navigator.share(shareData);
         }
+        function checkShareApi() {
+          const buttonContainer = document.getElementById('shareButtonContainer');
+          if(navigator.share) {
+            buttonContainer.style.display = 'block';
+          }
+        }
       </script>
+      <style type='text/css'>
+        button {
+          display: inline-block;
+          font-weight: 400;
+          text-align: center;
+          vertical-align: middle;
+          user-select: none;
+          border: 1px solid transparent;
+          padding: 0.375rem 0.75rem;
+          font-size: 1rem;
+          line-height: 1.5;
+          border-radius: 3px;
+          color: #ffffff;
+          background-color: #6c757d;
+          border-color: #6c757d;
+          cursor: pointer;
+        }
+      </style>
     </head>
-    <body>
-      <div>
+    <body onload='checkShareApi()'>
+      <div style='padding:  15px 0; margin-bottom: 15px; border-bottom: 1px solid lightgrey; display: none' id='shareButtonContainer'>
         <button onclick='shareAction()'>Share</button>
       </div>
       <div id='shareable-content'>
