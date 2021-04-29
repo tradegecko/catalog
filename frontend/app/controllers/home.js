@@ -23,14 +23,6 @@ export default class HomeController extends Controller {
     })
   }
 
-  async fetchChannel() {
-    if (this.channel_id) {
-      let channels = await this.store.query('channel', {
-        ids: [this.channel_id],
-      });
-    }
-  }
-
   @action
   createTemplate(){
 

@@ -17,9 +17,4 @@ export default class HomeRoute extends Route {
       filter_id: params.filter_id
     });
   }
-
-  setupController(controller, model) {
-    super.setupController(...arguments);
-    controller.fetchChannel();
-  }
 }
